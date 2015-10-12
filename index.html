@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="store"><!--DIRECTIVE references the 'store' app linked below. By including this in the html tag
+                        it lods the app once this doc loads.  Therefore the html in this doc is treated as being
+                        part of the app.  Need to do this to write expressions -->
+ <head>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+ </head>
+
+ <body ng-controller="StoreController as store"><!--Controller directive that attached our controller to this html
+                                                element.  Scope of controller inside this  html block element
+                                                State the name of controller and then assign alias-->
+
+   <!--<div ng-hide="store.product.soldOut">--><!-- Directive. If 'soldOut' property value in gem is true the ng-hide directive
+                                          will hide this element and thus the whole product-->
+    <div ng-repeat="product in store.products"><!-- Directive that iterates through store.products NOTE when using this directive
+                                                yuo don't need to prefix product with the app name i.e store-->
+     <h1> {{product.name}} </h1>
+     <h2> ${{product.price}} </h2>
+     <p> {{product.description}} </p>
+     <button ng-show="product.canPurchase">Add to cart</button><!-- directive that shows/hides this element based on value
+                                                                      of canPurchase in app-->
+    </div>
+
+
+
+
+  <script type="text/javascript" src="angular.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+
+ </body>
+
+</html>
