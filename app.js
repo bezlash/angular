@@ -19,7 +19,7 @@
         name: 'Ruby',
         price: 1000,
         description: 'Red ruby, good quality colour',
-        canPurchase: true,  // Boolean used to show set the canPurchase value to true or false.  Used to show/hide add to cart button-->
+        canPurchase: false,  // Boolean used to show set the canPurchase value to true or false.  Used to show/hide add to cart button-->
         soldOut: false,
       },
 
