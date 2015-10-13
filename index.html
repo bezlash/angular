@@ -6,23 +6,30 @@
   <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
  </head>
 
- <body ng-controller="StoreController as store"><!--Controller directive that attached our controller to this html
+ <body class="list-group" ng-controller="StoreController as store"><!--Controller directive that attached our controller to this html
                                                 element. Loops through and adds .ng-scope class to block elements and .ng-bindings
                                                 classes. State the name of controller and then assign alias-->
 
    <!--<div ng-hide="store.product.soldOut">--><!-- Directive. If 'soldOut' property value in gem is true the ng-hide directive
-                                          will hide this element and thus the whole product-->
-    <div ng-repeat="product in store.products"><!-- Directive that iterates through store.products NOTE when using this directive
-                                                yuo don't need to prefix product with the app name i.e store-->
-     <h1> {{product.name}} </h1>
-     <h2> ${{product.price}} </h2>
-     <p> {{product.description}} </p>
-     <button ng-show="product.canPurchase">Add to cart</button><!-- directive that shows/hides this element based on value
+                                              will hide this element and thus the whole product-->
+    <ul>
+      <li class="list-group-item" ng-repeat="product in store.products | orderBy:'price'"><!-- Directive that iterates through store.products NOTE when using this directive
+                                                you don't need to prefix product with the app name i.e store.  The pipe take output of first expression and passes it
+                                                to the second expression which is a order by filter-->
+        <h3>{{product.name | uppercase}}        <!-- Uppercase filter -->
+           <em class="pull-right">{{product.price | currency}}</em><!-- The pipe takes the output of 1st expression and passes to second expression which in
+                                                                    this case is a filter -->
+
+        </h3>
+
+        <p>{{product.description}}</p>
+        <button ng-show="product.canPurchase">Add to cart</button><!-- directive that shows/hides this element based on value
                                                                       of canPurchase in app-->
-    </div>
-
-
-
+        <div class="gallery">
+          <div class="img_wrap">
+            <img ng-src="{{product.images[0]}}"/>
+      </li>
+    </ul>
 
   <script type="text/javascript" src="angular.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
